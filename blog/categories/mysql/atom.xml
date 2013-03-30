@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mysql | My Octopress Blog]]></title>
   <link href="http://evsinev.github.com/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://evsinev.github.com/"/>
-  <updated>2013-03-30T23:35:43+04:00</updated>
+  <updated>2013-03-30T23:42:08+04:00</updated>
   <id>http://evsinev.github.com/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -57,6 +57,9 @@ samples  %        app name                 symbol name
 2761      1.0929  mysqld                   sp_instr_stmt::execute(THD*, unsigned int*)
 2647      1.0478  mysqld                   mtr_commit
 </code></p>
+
+<!-- more -->
+
 
 <ul>
 <li>http://heeen.de/blog/2011/06/how-to-generate-fancy-callgraphs-from-oprofile.html</li>

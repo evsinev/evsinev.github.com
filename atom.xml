@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://evsinev.github.com/atom.xml" rel="self"/>
   <link href="http://evsinev.github.com/"/>
-  <updated>2013-03-30T23:35:43+04:00</updated>
+  <updated>2013-03-30T23:42:08+04:00</updated>
   <id>http://evsinev.github.com/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -78,6 +78,11 @@
 </span><span class='line'>2961      1.1720  mysqld                   page_cur_search_with_match
 </span><span class='line'>2761      1.0929  mysqld                   sp_instr_stmt::execute(THD*, unsigned int*)
 </span><span class='line'>2647      1.0478  mysqld                   mtr_commit</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
 
 
 <ul>
