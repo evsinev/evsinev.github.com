@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: performance | My Octopress Blog]]></title>
+  <link href="http://evsinev.github.com/blog/categories/performance/atom.xml" rel="self"/>
+  <link href="http://evsinev.github.com/"/>
+  <updated>2013-03-30T23:35:43+04:00</updated>
+  <id>http://evsinev.github.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[mysql-profiler]]></title>
+    <link href="http://evsinev.github.com/blog/2013/03/30/mysql-profiler/"/>
+    <updated>2013-03-30T22:38:00+04:00</updated>
+    <id>http://evsinev.github.com/blog/2013/03/30/mysql-profiler</id>
+    <content type="html"><![CDATA[<h2>CentOS 5 - oprofiler</h2>
+
+<p>```
+  yum install oprofiler</p>
+
+<h1>run program</h1>
+
+<p>  opcontrol --stop;  opcontrol --reset; opcontrol --callgraph=8; opcontrol --start; \</p>
+
+<pre><code>opcontrol --status; sleep 5; opcontrol --stop; opreport -l | less
+</code></pre>
+
+<p>```</p>
+
+<p>example report
+<code>
+opreport -l --threshold 1
+warning: /no-vmlinux could not be found.
+CPU: Intel Core/i7, speed 2128.05 MHz (estimated)
+Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 1000000
+samples  %        app name                 symbol name
+16787     6.6447  mysqld                   ut_delay
+15902     6.2944  no-vmlinux               /no-vmlinux
+14975     5.9275  mysqld                   insert_events_waits_history_long(PFS_events_waits*)
+9605      3.8019  mysqld                   get_thread_mutex_locker_v1
+8388      3.3202  libc-2.5.so              memcpy
+8308      3.2885  mysqld                   buf_page_get_gen
+7220      2.8579  mysqld                   rec_get_offsets_func
+6662      2.6370  mysqld                   mutex_spin_wait
+6409      2.5369  libc-2.5.so              _int_malloc
+5714      2.2618  mysqld                   cmp_dtuple_rec_with_match
+5173      2.0476  mysqld                   end_mutex_wait_v1
+4083      1.6162  mysqld                   pfs_mutex_enter_func
+3339      1.3217  mysqld                   btr_cur_search_to_nth_level
+3268      1.2936  mysqld                   get_thread_rwlock_locker_v1
+2961      1.1720  mysqld                   page_cur_search_with_match
+2761      1.0929  mysqld                   sp_instr_stmt::execute(THD*, unsigned int*)
+2647      1.0478  mysqld                   mtr_commit
+</code></p>
+
+<ul>
+<li>http://heeen.de/blog/2011/06/how-to-generate-fancy-callgraphs-from-oprofile.html</li>
+<li>Profiling CPU on Linux with oprofile http://www.performancewiki.com/oprofile.html</li>
+<li>http://people.redhat.com/wcohen/</li>
+<li>http://people.redhat.com/wcohen/Fedora12OprofileTutorial.txt</li>
+<li>http://www.centos.org/docs/5/html/Deployment_Guide-en-US/ch-oprofile.html</li>
+<li>http://www.pixelbeat.org/programming/profiling/</li>
+<li>http://kcachegrind.sourceforge.net/html/Home.html</li>
+<li>http://www.ibm.com/developerworks/library/l-gnuprof.html</li>
+<li>https://bugs.archlinux.org/task/17122</li>
+</ul>
+
+
+<p><code>
+for o in 0 1 2 3; do od -A d -t x1 -w4 -j$o /boot/vmlinuz | grep "1f 8b 08 00"; done
+dd if=/boot/vmlinuz bs=1 skip=_the_offset_returned_by_od_| zcat &gt; vmlinux
+</code></p>
+
+<h2>Archlinux - pref</h2>
+
+<p>Install - <code>sudo pacman -S perf</code>, Run - <code>sudo perf top</code> или <code>sudo perf top -K -p 8774</code></p>
+
+<h2>other tools</h2>
+
+<p>vmstat
+```
+procs -----------memory---------- ---swap-- -----io---- -system-- ----cpu----
+ r  b   swpd   free    buff  cache   si   so    bi    bo   in   cs   us sy id wa</p>
+
+<p> 0  0 2119940 1414648  17980 754320    0    0     0     0  526  878   4  2 95  0
+ 1  0 2119932 1407440  17988 761436   44    0  4312    96  641 12503  9  7 83  2
+ 1  0 2119932 1408252  17988 760236    0    0     0     0  830 77192 22 34 44  0
+ 2  0 2119932 1408308  17988 760228    0    0     0     0  765 79648 22 33 45  0
+```</p>
+
+<p>gdb -- http://poormansprofiler.org/</p>
+
+<h2>Масштабирование mysql</h2>
+
+<ol>
+<li><p>мастер вставляет задания в таблицу-очередь</p></li>
+<li><p>скрипт смотрит и выполняет на каждом слейве
+ можно управлять какие слейвы должны выпонлять задания
+ http://www.slideshare.net/highload/scaling-web-sites-by-sharding-and-replication-hl2008-rus-presentation
+ 13 слайд</p></li>
+<li><p><a href="http://www.jurriaanpersyn.com/archives/2009/02/12/database-sharding-at-netlog-with-mysql-and-php/"><img src="http://www.jurriaanpersyn.com/projects/netlog/sharding/verticalpartitioning-slave.png" alt="Database Setup 4: Vertical Partitioning / Replication Tree" /></a></p></li>
+<li><p>http://www.insight-it.ru/masshtabiruemost/segmentirovanie-bazy-dannykh/</p></li>
+<li><p>https://code.google.com/p/vitess/</p></li>
+</ol>
+
+
+<pre><code>Репликация однопоточна и происходит недостаточно быстро.
+Читать данные с мастера при Master/Slave репликации = медленная смерть
+http://www.insight-it.ru/masshtabiruemost/arkhitektura-twitter-dva-goda-spustya/
+
+
+http://www.insight-it.ru/goto/https://github.com/twitter/flockdb
+
+
+http://www.insight-it.ru/masshtabiruemost/10-izvestnykh-masshtabiruemykh-arkhitekturnykh-shablonov/
+
+
+http://habrahabr.ru/post/117453/
+
+
+https://cs.dx.com/Ticket/LoginCheckReply?FormKey=C352F748341B4AF394D6CFD718D8A62E
+
+http://yoshinorimatsunobu.blogspot.ru/2010/10/using-mysql-as-nosql-story-for.html
+
+https://github.com/ahiguti/HandlerSocket-Plugin-for-MySQL/blob/master/docs-en/configuration-options.en.txt
+</code></pre>
+
+<p>http://poormansprofiler.org/</p>
+
+<pre><code>http://dev.mysql.com/doc/refman/5.0/en/compile-and-link-options.html
+For a connection from a client to a server running on the same host, if you connect using TCP/IP rather than a Unix socket file, performance is 7.5% slower. (On Unix, if you connect to the host name localhost, MySQL uses a socket file by default.)
+
+
+iostat disk utilization
+
+
+LongAdder jsr166
+AtomicLong[Random.nextInteger(count)].inc();
+
+tryLock -&gt; lock()
+</code></pre>
+
+<h2>Производительность</h2>
+
+<ul>
+<li><a href="http://smotri.com/video/view/?id=v9874073d33">Тюнинг FreeBSD 7.0 Игорь Сысоев</a> <a href="http://www.slideshare.net/Dolce727/sysoev-freebsd7?from=ss_embed#">slides</a> <a href="http://highload.com.ua/index.php/2009/06/14/%D1%82%D1%8E%D0%BD%D0%B8%D0%BD%D0%B3-freebsd-7-%D0%BF%D0%BE%D0%B4-%D0%B2%D1%8B%D1%81%D0%BE%D0%BA%D0%B8%D0%B5-%D0%BD%D0%B0%D0%B3%D1%80%D1%83%D0%B7%D0%BA%D0%B8/">video + slides</a></li>
+</ul>
+
+
+<h2>http performance</h2>
+
+<p><code>httperf --hog --server=192.168.1.100 --wsess=100000,47,0 --rate 192</code></p>
+
+<p>https://calomel.org/nginx.html</p>
+
+<h2>mysql as nosql</h2>
+
+<p><a href="http://yoshinorimatsunobu.blogspot.ru/2010/10/using-mysql-as-nosql-story-for.html">Using MySQL as a NoSQL - A story for exceeding 750,000 qps on a commodity server</a></p>
+]]></content>
+  </entry>
+  
+</feed>

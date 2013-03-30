@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: stm32 | My Octopress Blog]]></title>
+  <link href="http://evsinev.github.com/blog/categories/stm32/atom.xml" rel="self"/>
+  <link href="http://evsinev.github.com/"/>
+  <updated>2013-03-30T23:35:43+04:00</updated>
+  <id>http://evsinev.github.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[stm32-servo]]></title>
+    <link href="http://evsinev.github.com/blog/2013/03/16/stm32-servo/"/>
+    <updated>2013-03-16T17:44:00+04:00</updated>
+    <id>http://evsinev.github.com/blog/2013/03/16/stm32-servo</id>
+    <content type="html"><![CDATA[<p>Начинаем делать</p>
+
+<p>http://thingiverse-production.s3.amazonaws.com/renders/d0/f3/fa/6c/79/_MG_5060_preview_featured.jpg
+http://www.thingiverse.com/thing:34829</p>
+
+<p>Код для stm32vldiscovery
+https://github.com/evsinev/stm32-servo-arm</p>
+
+<h2>References</h2>
+]]></content>
+  </entry>
+  
+</feed>
