@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
+  <title>handler-socket - My Octopress Blog</title>
   <meta name="author" content="Your Name">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://evsinev.github.com">
+  <link rel="canonical" href="http://evsinev.github.com/blog/2013/03/31/handler-socket">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/evsinev/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
@@ -63,15 +63,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/03/31/handler-socket/">Handler-socket</a></h1>
+      <h1 class="entry-title">Handler-socket</h1>
     
     
       <p class="meta">
@@ -94,7 +91,7 @@
   </header>
 
 
-  <div class="entry-content"><ol>
+<div class="entry-content"><ol>
 <li>Building Handlersocket</li>
 </ol>
 
@@ -471,125 +468,16 @@ syntax.</p>
 
 <p>   0 1</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/mysql-profiler/">Mysql-profiler</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
 
-<time datetime="2013-03-30T22:38:00+04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>CentOS 5 - oprofiler</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>  yum install oprofiler
-</span><span class='line'># run program
-</span><span class='line'>  opcontrol --stop;  opcontrol --reset; opcontrol --callgraph=8; opcontrol --start; \
-</span><span class='line'>    opcontrol --status; sleep 5; opcontrol --stop; opreport -l | less</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>example report</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>opreport -l --threshold 1
-</span><span class='line'>warning: /no-vmlinux could not be found.
-</span><span class='line'>CPU: Intel Core/i7, speed 2128.05 MHz (estimated)
-</span><span class='line'>Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 1000000
-</span><span class='line'>samples  %        app name                 symbol name
-</span><span class='line'>16787     6.6447  mysqld                   ut_delay
-</span><span class='line'>15902     6.2944  no-vmlinux               /no-vmlinux
-</span><span class='line'>14975     5.9275  mysqld                   insert_events_waits_history_long(PFS_events_waits*)
-</span><span class='line'>9605      3.8019  mysqld                   get_thread_mutex_locker_v1
-</span><span class='line'>8388      3.3202  libc-2.5.so              memcpy
-</span><span class='line'>8308      3.2885  mysqld                   buf_page_get_gen
-</span><span class='line'>7220      2.8579  mysqld                   rec_get_offsets_func
-</span><span class='line'>6662      2.6370  mysqld                   mutex_spin_wait
-</span><span class='line'>6409      2.5369  libc-2.5.so              _int_malloc
-</span><span class='line'>5714      2.2618  mysqld                   cmp_dtuple_rec_with_match
-</span><span class='line'>5173      2.0476  mysqld                   end_mutex_wait_v1
-</span><span class='line'>4083      1.6162  mysqld                   pfs_mutex_enter_func
-</span><span class='line'>3339      1.3217  mysqld                   btr_cur_search_to_nth_level
-</span><span class='line'>3268      1.2936  mysqld                   get_thread_rwlock_locker_v1
-</span><span class='line'>2961      1.1720  mysqld                   page_cur_search_with_match
-</span><span class='line'>2761      1.0929  mysqld                   sp_instr_stmt::execute(THD*, unsigned int*)
-</span><span class='line'>2647      1.0478  mysqld                   mtr_commit</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/30/mysql-profiler/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/16/stm32-servo/">Stm32-servo</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -601,35 +489,32 @@ syntax.</p>
   
 
 
-<time datetime="2013-03-16T17:44:00+04:00" pubdate data-updated="true">Mar 16<span>th</span>, 2013</time>
-        
-      </p>
+<time datetime="2013-03-31T16:16:00+04:00" pubdate data-updated="true">Mar 31<span>st</span>, 2013</time>
+      
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>Начинаем делать</p>
-
-<p>http://thingiverse-production.s3.amazonaws.com/renders/d0/f3/fa/6c/79/_MG_5060_preview_featured.jpg
-http://www.thingiverse.com/thing:34829</p>
-
-<p>Код для stm32vldiscovery
-https://github.com/evsinev/stm32-servo-arm</p>
-
-<h2>References</h2>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://evsinev.github.com/blog/2013/03/31/handler-socket/" data-via="" data-counturl="http://evsinev.github.com/blog/2013/03/31/handler-socket/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/03/30/mysql-profiler/" title="Previous Post: mysql-profiler">&laquo; mysql-profiler</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -657,6 +542,7 @@ https://github.com/evsinev/stm32-servo-arm</p>
 
   
 </aside>
+
 
     </div>
   </div>
