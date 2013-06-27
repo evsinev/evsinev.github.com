@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: profiler - My Octopress Blog</title>
+  <title>How to enable android incremental build in Idea - My Octopress Blog</title>
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Category: profiler">
+  <meta name="description" content="Modify dx.jar to enable incremental build by default Create directory adt-bundle-linux-x86_64/sdk/platform-tools/lib/incremental
+Download com.android &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://evsinev.github.comblog/categories/profiler">
+  <link rel="canonical" href="http://evsinev.github.com/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/evsinev/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
@@ -64,35 +65,113 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Profiler</h1>
+    
+      <h1 class="entry-title">How to Enable Android Incremental Build in Idea</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-27T20:50:00+04:00" pubdate data-updated="true">Jun 27<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><h2>Modify dx.jar to enable incremental build by default</h2>
 
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/2013/03/30/mysql-profiler/">mysql-profiler</a></h1>
-<time datetime="2013-03-30T22:38:00+04:00" pubdate><span class='month'>Mar</span> <span class='day'>30</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/mysql/'>mysql</a>, <a class='category' href='/blog/categories/performance/'>performance</a>, <a class='category' href='/blog/categories/profiler/'>profiler</a></span>
-</footer>
+<ul>
+<li>Create directory adt-bundle-linux-x86_64/sdk/platform-tools/lib/incremental</li>
+<li>Download <code>com.android.dx.command.dexer.Main</code> class</li>
+<li>Set default value of <code>incremental</code> field to <code>true</code></li>
+</ul>
 
 
-</article>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>938c938
+</span><span class='line'>&lt;         public boolean incremental = false;
+</span><span class='line'>---
+</span><span class='line'>&gt;         public boolean incremental = true;</span></code></pre></td></tr></table></div></figure>
 
+
+<ul>
+<li>Compile the class and repack <code>dx.jar</code></li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>javac -target 1.6 -source 1.6 -cp ../dx.jar -d classes Main.java \
+</span><span class='line'>  && cd classes && jar uf ../../dx.jar *</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Disable deleting classes.dex in Intellij Idea</h2>
+
+<p>In the <code>AndroidDexBuilder</code> class remove <code>outFile.delete()</code> statement and rebuild  <code>android-jps-plugin.jar</code>.</p>
+
+<p>The simplest way to do it replace <code>delete</code> string with <code>exists</code> in the <code>AndroidDexBuild</code> class
+in the <code>idea-$VERSION/plugins/android/lib/jps/android-jps-plugin.jar</code> archive.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-27T20:50:00+04:00" pubdate data-updated="true">Jun 27<span>th</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://evsinev.github.com/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea/" data-via="" data-counturl="http://evsinev.github.com/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/09/epd-controller/" title="Previous Post: EPD controller">&laquo; EPD controller</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

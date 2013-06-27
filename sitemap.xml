@@ -9,12 +9,18 @@
         <lastmod>2013-03-30T23:41:57+04:00</lastmod>
     </url>
     <url>
-        <loc>http://evsinev.github.com/blog/2013/03/31/handler-socket/</loc>
-        <lastmod>2013-03-31T16:17:30+04:00</lastmod>
+        <loc>http://evsinev.github.com/blog/2013/06/09/epd-controller/</loc>
+        <lastmod>2013-06-09T22:41:35+04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://evsinev.github.com/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea/
+        </loc>
+        <lastmod>2013-06-27T21:07:04+04:00</lastmod>
     </url>
     <url>
         <loc>http://evsinev.github.com/blog/archives/</loc>
-        <lastmod>2013-03-31T16:17:30+04:00</lastmod>
+        <lastmod>2013-06-27T21:07:04+04:00</lastmod>
     </url>
     <url>
         <loc>http://evsinev.github.com/robots.txt</loc>
@@ -22,6 +28,6 @@
     </url>
     <url>
         <loc>http://evsinev.github.com/</loc>
-        <lastmod>2013-03-31T16:17:30+04:00</lastmod>
+        <lastmod>2013-06-27T21:07:04+04:00</lastmod>
     </url>
 </urlset>
