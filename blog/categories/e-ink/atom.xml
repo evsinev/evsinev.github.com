@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: e-ink | My Octopress Blog]]></title>
+  <link href="http://evsinev.github.com/blog/categories/e-ink/atom.xml" rel="self"/>
+  <link href="http://evsinev.github.com/"/>
+  <updated>2013-08-07T01:15:20+04:00</updated>
+  <id>http://evsinev.github.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Texet TB-138]]></title>
+    <link href="http://evsinev.github.com/blog/2013/08/07/texet-tb-138/"/>
+    <updated>2013-08-07T00:55:00+04:00</updated>
+    <id>http://evsinev.github.com/blog/2013/08/07/texet-tb-138</id>
+    <content type="html"><![CDATA[<p>Приобрел все таки эл. книгу с большим 8" экраном - Texet tb-138.</p>
+
+<p>Выяснилось, что внутри Android 2.3.1.
+Да еще и процессор быстрый: Rockchip rk2918 (Cortex A8, 1Ghz)</p>
+
+<p>Не знаю по каким причинам производитель не пишет, что внутри Android и можно ставить свои приложения,
+но я бы сразу купил и не нужно было бы изучать firmware update с сайта призводителя (http://www.texet.ru/save.php?file=/files/teXet_TB-138_firmware_v1.1_1374574978.rar)</p>
+
+<p>Вот параметры процессора, разделы flash и состояние памяти:
+```
+cat /proc/cpuinfo
+Processor   : ARMv7 Processor rev 2 (v7l)
+BogoMIPS   : 101.94
+Features   : swp half thumb fastmult vfp edsp thumbee neon vfpv3
+...
+/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+102000
+/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq
+102000
+/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq
+1008000
+...
+df
+Filesystem             Size   Used   Free   Blksize
+/dev                    87M    32K    87M   4096
+/mnt/asec               87M     0K    87M   4096
+/mnt/obb                87M     0K    87M   4096
+/system                178M   178M    31K   1024
+/data                  503M    51M   451M   4096
+/cache                 112M     5M   106M   1024
+/mnt/storage             2G    18M     2G   8192</p>
+
+<p>cat /proc/meminfo
+MemTotal:         178836 kB
+MemFree:           11908 kB
+Buffers:            3288 kB
+Cached:            53212 kB
+...</p>
+
+<p>```</p>
+
+<p>Режим отладки включается легко: нужно нажать на кнопку MENU в Настройки/Информация.
+И после этого можно подключаться по adb.
+Для тех у кого linux, вот правило для udev:
+<code>
+SUBSYSTEM=="usb", ATTR{idVendor}=="0bb4", MODE="0666"
+</code></p>
+
+<p>Пока меня интересуют только pdf и djvu форматы.</p>
+
+<ul>
+<li>djvu: штатный viewer растягивает страницу непропорционально</li>
+<li>pdf: если не масштабировать, то читать можно (масштаб при переходе со страницы на страницу не запоминает)</li>
+</ul>
+
+
+<p>В общем, поставил Orion Viewer - https://code.google.com/p/orion-viewer/
+Он пошустрее работает и с масштабированием очень удобно.</p>
+
+<p>Единственное, из коробки не вызывает функцию полного обновления страницы
+Добавил код для полного обновления, вот патч:
+```
+Index: src/universe/constellation/orion/viewer/Device.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP</p>
+
+<h1>&lt;+>UTF-8</h1>
+
+<p>--- src/universe/constellation/orion/viewer/Device.java (revision 94ddf5a0163adef8ca6c8c629edbea4c0544024f)
++++ src/universe/constellation/orion/viewer/Device.java (revision )
+@@ -53,6 +53,8 @@</p>
+
+<pre><code>     public final static boolean EDGE = "edge".equals(DEVICE.toLowerCase()) || "edgejr".equals(DEVICE.toLowerCase());
+</code></pre>
+
+<ul>
+<li><pre><code> public final static boolean TEXET_TB_138 = "texet".equalsIgnoreCase(DEVICE) &amp;&amp; "rk29sdk".equalsIgnoreCase(MODEL);
+</code></pre>
+
++
+
+<pre><code> public final static boolean NOOK_CLASSIC;
+
+ static {
+</code></pre>
+
+Index: src/universe/constellation/orion/viewer/device/TexetTb138Device.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+
+<h1>&lt;+>UTF-8</h1>
+
+<p>--- src/universe/constellation/orion/viewer/device/TexetTb138Device.java    (revision )
++++ src/universe/constellation/orion/viewer/device/TexetTb138Device.java    (revision )
+@@ -0,0 +1,84 @@
++package universe.constellation.orion.viewer.device;
++
++import android.view.KeyEvent;
++import android.view.View;
++import universe.constellation.orion.viewer.Common;
++import universe.constellation.orion.viewer.OperationHolder;
++
++import java.lang.reflect.Method;
++
++/**</p></li>
+<li>*</li>
+<li>*/
++public class TexetTb138Device extends AndroidDevice {
++</li>
+<li> public static final int EPD_A2 = 2;</li>
+<li> public static final int EPD_AUTO = 0;</li>
+<li> public static final int EPD_FULL = 1;</li>
+<li> public static final int EPD_NULL = -1;</li>
+<li> public static final int EPD_OED_PART = 10;</li>
+<li> public static final int EPD_PART = 3;
++</li>
+<li> private final Method theRequestEpdModeMethod;
++</li>
+<li> public TexetTb138Device() {</li>
+<li><pre><code> super();
+</code></pre></li>
+<li><pre><code> // public boolean requestEpdMode(int i)
+</code></pre></li>
+<li><pre><code> Method requestEpdModeMethod;
+</code></pre></li>
+<li><pre><code> try {
+</code></pre></li>
+<li><pre><code>     requestEpdModeMethod = View.class.getMethod("requestEpdMode", int.class);
+</code></pre></li>
+<li><pre><code>     Common.d("request epd method = " + requestEpdModeMethod);
+</code></pre></li>
+<li><pre><code> } catch (NoSuchMethodException e) {
+</code></pre></li>
+<li><pre><code>     Common.d("Method requestEpdMode(int) not found", e);
+</code></pre></li>
+<li><pre><code>     requestEpdModeMethod = null;
+</code></pre></li>
+<li><pre><code> }
+</code></pre></li>
+<li><pre><code> theRequestEpdModeMethod = requestEpdModeMethod;
+</code></pre>
+
+<p>+</p></li>
+<li> }
++
++</li>
+<li> @Override</li>
+<li> public boolean onKeyDown(int keyCode, KeyEvent event, OperationHolder holder) {
++</li>
+<li><pre><code> switch (keyCode) {
+</code></pre></li>
+<li><pre><code>     // button '&gt;' on the left and the right side
+</code></pre></li>
+<li><pre><code>     case KeyEvent.KEYCODE_NUMPAD_0:
+</code></pre></li>
+<li><pre><code>         holder.value = NEXT;
+</code></pre></li>
+<li><pre><code>         return true;
+</code></pre>
+
+<p>+</p></li>
+<li><pre><code>     // button '&lt;' on the left and the right side
+</code></pre></li>
+<li><pre><code>     case KeyEvent.KEYCODE_NUM_LOCK:
+</code></pre></li>
+<li><pre><code>         holder.value = PREV;
+</code></pre></li>
+<li><pre><code>         return true;
+</code></pre>
+
+<p>+</p></li>
+<li><pre><code>     default:
+</code></pre></li>
+<li><pre><code>         return super.onKeyDown(keyCode, event, holder);
+</code></pre>
+
+<p>+</p></li>
+<li><pre><code> }
+</code></pre></li>
+<li> }
++</li>
+<li> @Override</li>
+<li> public void flushBitmap(int delay) {
++</li>
+<li><pre><code> if (activity.getView() != null) {
+</code></pre></li>
+<li><pre><code>     boolean result = requestEpdMode(activity.getView(), EPD_FULL);
+</code></pre></li>
+<li><pre><code>     Common.d("Invoked requestEpdMode: "+result);
+</code></pre>
+
+<p>+</p></li>
+<li><pre><code> }
+</code></pre>
+
+<p>+</p></li>
+<li><pre><code> super.flushBitmap(delay);
+</code></pre>
+
+<p>+
++</p></li>
+<li> }
++
++</li>
+<li> private boolean requestEpdMode(View aView, int aMode) {</li>
+<li><pre><code> try {
+</code></pre></li>
+<li><pre><code>     return (Boolean)theRequestEpdModeMethod.invoke(aView, aMode);
+</code></pre></li>
+<li><pre><code> } catch (Exception e) {
+</code></pre></li>
+<li><pre><code>     Common.d("Can't invoke method: "+ theRequestEpdModeMethod, e);
+</code></pre></li>
+<li><pre><code>     return false;
+</code></pre></li>
+<li><pre><code> }
+</code></pre></li>
+<li> }
++
++}</li>
+</ul>
+
+
+<p>===================================================================
+--- src/universe/constellation/orion/viewer/Common.java (revision 94ddf5a0163adef8ca6c8c629edbea4c0544024f)
++++ src/universe/constellation/orion/viewer/Common.java (revision )
+@@ -23,6 +23,7 @@
+ import universe.constellation.orion.viewer.device.AndroidDevice;
+ import universe.constellation.orion.viewer.device.EdgeDevice;
+ import universe.constellation.orion.viewer.device.NookDevice;
++import universe.constellation.orion.viewer.device.TexetTb138Device;</p>
+
+<p> import java.io.*;</p>
+
+<p>@@ -33,9 +34,13 @@
+  */
+ public class Common {</p>
+
+<ul>
+<li> public static final boolean ENABLE2SCREEN = /<em>replace</em>/true/<em>replace</em>/;</li>
+<li><p> public static final boolean ENABLE2SCREEN = false;// /<em>replace</em>/true/<em>replace</em>/;</p>
+
+<p> public static Device createDevice() {
++</p></li>
+<li><pre><code> Common.d("Device: "+ Device.Info.DEVICE+", model: "+Device.Info.MODEL+", manufact: "+Device.Info.MANUFACTURER);
+</code></pre></li>
+<li><pre><code> Common.d("is texet = "+Device.Info.TEXET_TB_138);
+</code></pre>
+
++
+
+<pre><code> if (ENABLE2SCREEN) {
+     try {
+          if (Device.Info.NOOK_CLASSIC) {
+</code></pre>
+
+@@ -48,7 +53,11 @@
+
+<pre><code>     } catch (Exception e) {
+         e.printStackTrace();
+     }
+</code></pre></li>
+<li><pre><code> } else if(Device.Info.TEXET_TB_138) {
+</code></pre></li>
+<li><pre><code>     Common.d("Using TexetTb138Device");
+</code></pre></li>
+<li><pre><code>     return new TexetTb138Device();
+ }
+</code></pre>
+
++
+
+<pre><code> return new AndroidDevice();
+</code></pre>
+
+<p> }</p></li>
+</ul>
+
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>

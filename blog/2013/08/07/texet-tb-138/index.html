@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Octopress Blog</title>
+  <title>Texet TB-138 - My Octopress Blog</title>
   <meta name="author" content="Your Name">
 
   
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://evsinev.github.com">
+  <link rel="canonical" href="http://evsinev.github.com/blog/2013/08/07/texet-tb-138">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/evsinev/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
@@ -76,15 +76,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/08/07/texet-tb-138/">Texet TB-138</a></h1>
+      <h1 class="entry-title">Texet TB-138</h1>
     
     
       <p class="meta">
@@ -107,7 +104,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Приобрел все таки эл. книгу с большим 8&#8221; экраном - Texet tb-138.</p>
+<div class="entry-content"><p>Приобрел все таки эл. книгу с большим 8&#8221; экраном - Texet tb-138.</p>
 
 <p>Выяснилось, что внутри Android 2.3.1.
 Да еще и процессор быстрый: Rockchip rk2918 (Cortex A8, 1Ghz)</p>
@@ -497,93 +494,16 @@
 
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea/">How to Enable Android Incremental Build in Idea</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
 
-<time datetime="2013-06-27T20:50:00+04:00" pubdate data-updated="true">Jun 27<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Modify dx.jar to enable incremental build by default</h2>
-
-<ul>
-<li>Create directory adt-bundle-linux-x86_64/sdk/platform-tools/lib/incremental</li>
-<li>Download <code>com.android.dx.command.dexer.Main</code> class</li>
-<li>Set default value of <code>incremental</code> field to <code>true</code></li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>938c938
-</span><span class='line'>&lt;         public boolean incremental = false;
-</span><span class='line'>---
-</span><span class='line'>&gt;         public boolean incremental = true;</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>Compile the class and repack <code>dx.jar</code></li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>javac -target 1.6 -source 1.6 -cp ../dx.jar -d classes Main.java \
-</span><span class='line'>  && cd classes && jar uf ../../dx.jar *</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Disable deleting classes.dex in Intellij Idea</h2>
-
-<p>In the <code>AndroidDexBuilder</code> class remove <code>outFile.delete()</code> statement and rebuild  <code>android-jps-plugin.jar</code>.</p>
-
-<p>The simplest way to do it replace <code>delete</code> string with <code>exists</code> in the <code>AndroidDexBuild</code> class
-in the <code>idea-$VERSION/plugins/android/lib/jps/android-jps-plugin.jar</code> archive.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/09/epd-controller/">EPD Controller</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -595,189 +515,38 @@ in the <code>idea-$VERSION/plugins/android/lib/jps/android-jps-plugin.jar</code>
   
 
 
-<time datetime="2013-06-09T20:40:00+04:00" pubdate data-updated="true">Jun 9<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Как сделать книгу на электронных чернилах своими руками.</p>
-
-<ul>
-<li>Купить один из PVI-дисплеев на <a href="http://www.aliexpress.com/wholesale?SearchText=pvi">aliexpress</a></li>
-<li>Приобрести модуль EPD-контроллера <a href="http://vdc.epson.com/index.php?option=com_docman&amp;task=cat_view&amp;gid=389&amp;Itemid=99">S4E5B001B000A00</a> <a href="http://www.digikey.com/product-detail/en/S4E5B001B000A00/S4E5B001B000A00-ND/3681250">digikey</a> или mouser</li>
-<li>Разьем для шлейфа http://ru.farnell.com/ffc-fpc</li>
-</ul>
-
-
-<p>http://wenku.baidu.com/view/187d53956bec0975f465e245.html
-http://www.amazon.com/gp/help/customer/display.html?nodeId=200203720</p>
-
-<p>http://electronics.visionect.si/products-hardware/epaper-modules/epd-controller-module/
-http://www.arm.com/community/partners/display_product/rw/ProductId/6494/
-http://podpiram.si/products-hardware/epaper-displays/6-pearl-epd/
-http://podpiram.si/products-hardware/epaper-displays/97-epd/</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2013-08-07T00:55:00+04:00" pubdate data-updated="true">Aug 7<span>th</span>, 2013</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/mysql-profiler/">Mysql-profiler</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/e-ink/'>e-ink</a>
+  
+</span>
 
 
-<time datetime="2013-03-30T22:38:00+04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><h2>CentOS 5 - oprofiler</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>  yum install oprofiler
-</span><span class='line'># run program
-</span><span class='line'>  opcontrol --stop;  opcontrol --reset; opcontrol --callgraph=8; opcontrol --start; \
-</span><span class='line'>    opcontrol --status; sleep 5; opcontrol --stop; opreport -l | less</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>example report</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>opreport -l --threshold 1
-</span><span class='line'>warning: /no-vmlinux could not be found.
-</span><span class='line'>CPU: Intel Core/i7, speed 2128.05 MHz (estimated)
-</span><span class='line'>Counted CPU_CLK_UNHALTED events (Clock cycles when not halted) with a unit mask of 0x00 (No unit mask) count 1000000
-</span><span class='line'>samples  %        app name                 symbol name
-</span><span class='line'>16787     6.6447  mysqld                   ut_delay
-</span><span class='line'>15902     6.2944  no-vmlinux               /no-vmlinux
-</span><span class='line'>14975     5.9275  mysqld                   insert_events_waits_history_long(PFS_events_waits*)
-</span><span class='line'>9605      3.8019  mysqld                   get_thread_mutex_locker_v1
-</span><span class='line'>8388      3.3202  libc-2.5.so              memcpy
-</span><span class='line'>8308      3.2885  mysqld                   buf_page_get_gen
-</span><span class='line'>7220      2.8579  mysqld                   rec_get_offsets_func
-</span><span class='line'>6662      2.6370  mysqld                   mutex_spin_wait
-</span><span class='line'>6409      2.5369  libc-2.5.so              _int_malloc
-</span><span class='line'>5714      2.2618  mysqld                   cmp_dtuple_rec_with_match
-</span><span class='line'>5173      2.0476  mysqld                   end_mutex_wait_v1
-</span><span class='line'>4083      1.6162  mysqld                   pfs_mutex_enter_func
-</span><span class='line'>3339      1.3217  mysqld                   btr_cur_search_to_nth_level
-</span><span class='line'>3268      1.2936  mysqld                   get_thread_rwlock_locker_v1
-</span><span class='line'>2961      1.1720  mysqld                   page_cur_search_with_match
-</span><span class='line'>2761      1.0929  mysqld                   sp_instr_stmt::execute(THD*, unsigned int*)
-</span><span class='line'>2647      1.0478  mysqld                   mtr_commit</span></code></pre></td></tr></table></div></figure>
-
-
-
-
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://evsinev.github.com/blog/2013/08/07/texet-tb-138/" data-via="" data-counturl="http://evsinev.github.com/blog/2013/08/07/texet-tb-138/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/03/30/mysql-profiler/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/16/stm32-servo/">Stm32-servo</a></h1>
-    
-    
-      <p class="meta">
-        
+        <a class="basic-alignment left" href="/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea/" title="Previous Post: How to enable android incremental build in Idea">&laquo; How to enable android incremental build in Idea</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-16T17:44:00+04:00" pubdate data-updated="true">Mar 16<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Начинаем делать</p>
-
-<p>http://thingiverse-production.s3.amazonaws.com/renders/d0/f3/fa/6c/79/_MG_5060_preview_featured.jpg
-http://www.thingiverse.com/thing:34829</p>
-
-<p>Код для stm32vldiscovery
-https://github.com/evsinev/stm32-servo-arm</p>
-
-<h2>References</h2>
 </div>
-  
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -813,6 +582,7 @@ https://github.com/evsinev/stm32-servo-arm</p>
 
   
 </aside>
+
 
     </div>
   </div>
