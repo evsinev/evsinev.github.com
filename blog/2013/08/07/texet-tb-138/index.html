@@ -175,13 +175,43 @@
 
 <p>Режим отладки включается легко: нужно нажать на кнопку MENU в Настройки/Информация.
 И после этого можно подключаться по adb.
-Для тех у кого linux, вот правило для udev:</p>
+Вот как почему это работает (код в com.caration.setting.Setting из EinkSettings.apk):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>    d.setOnKeyListener(new android.content.DialogInterface.OnKeyListener() {
+</span><span class='line'>        public boolean onKey(DialogInterface dialoginterface, int i, KeyEvent keyevent) {
+</span><span class='line'>            if(i == 82 && keyevent.getAction() == 0)
+</span><span class='line'>                try {
+</span><span class='line'>                    if(android.provider.Settings.Secure.getInt(getContentResolver(), "adb_enabled") == 0)
+</span><span class='line'>                        android.provider.Settings.Secure.putInt(getContentResolver(), "adb_enabled", 1);
+</span><span class='line'>                    else
+</span><span class='line'>                        android.provider.Settings.Secure.putInt(getContentResolver(), "adb_enabled", 0);
+</span><span class='line'>                } catch(android.provider.Settings.SettingNotFoundException settingnotfoundexception) {
+</span><span class='line'>                    settingnotfoundexception.printStackTrace();
+</span><span class='line'>                }
+</span><span class='line'>            return false;
+</span><span class='line'>        }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Для тех у кого linux, ниже правило для udev:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>SUBSYSTEM=="usb", ATTR{idVendor}=="0bb4", MODE="0666"</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Пока меня интересуют только pdf и djvu форматы.</p>
+<h1>PDF и djvu</h1>
 
 <ul>
 <li>djvu: штатный viewer растягивает страницу непропорционально</li>
@@ -190,10 +220,69 @@
 
 
 <p>В общем, поставил Orion Viewer - https://code.google.com/p/orion-viewer/
-Он пошустрее работает и с масштабированием очень удобно.</p>
+Он пошустрее работает и с масштабированием очень удобно.
+Новая версия уже поддерживает Texet tb-138!
+Commit: https://github.com/max-kammerer/orion-viewer/commit/e010cb7fc19d5754b2606be8b9553a5ae439366b</p>
 
-<p>Единственное, из коробки не вызывает функцию полного обновления страницы
-Добавил код для полного обновления, вот патч https://code.google.com/p/orion-viewer/issues/detail?id=71</p>
+<h1>fb2, epub и другие</h1>
+
+<p>Очень удобно читать c помощью AlReader.
+Вот патч для него:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>AlReader3Activity.onKeyDown(int keyCode, KeyEvent event) добавляется 
+</span><span class='line'>        if(keyCode==20) keyCode = 144; // клавиша 'влево' для KEYCODE_DPAD_DOWN 
+</span><span class='line'>        if(keyCode==19) keyCode = 143; // клавиша 'вправо' для KEYCODE_DPAD_UP 
+</span><span class='line'>diff -Nur AlReader3Activity-orig/smali/com/neverland/alr/AlReader3Activity.smali AlReader3Activity/smali/com/neverland/alr/AlReader3Activity.smali 
+</span><span class='line'>--- AlReader3Activity-orig/smali/com/neverland/alr/AlReader3Activity.smali    2013-08-08 15:24:19.000000000 +0400 
+</span><span class='line'>+++ AlReader3Activity/smali/com/neverland/alr/AlReader3Activity.smali   2013-08-09 02:10:07.503478159 +0400 
+</span><span class='line'>@@ -8594,6 +8594,18 @@ 
+</span><span class='line'>     .parameter "event" 
+</span><span class='line'>  
+</span><span class='line'>     .prologue 
+</span><span class='line'>+ 
+</span><span class='line'>+    const/16 v4, 0x90 
+</span><span class='line'>+    if-ne p1, v4, :cond_9991 
+</span><span class='line'>+    const/16 p1, 0x14 
+</span><span class='line'>+    
+</span><span class='line'>+    :cond_9991 
+</span><span class='line'>+    const/16 v4, 0x8f 
+</span><span class='line'>+    if-ne p1, v4, :cond_9992 
+</span><span class='line'>+    const/16 p1, 0x13 
+</span><span class='line'>+ 
+</span><span class='line'>+    :cond_9992 
+</span><span class='line'>+ 
+</span><span class='line'>     .line 2990 
+</span><span class='line'>     invoke-virtual {p2}, Landroid/view/KeyEvent;-&gt;getEventTime()J </span></code></pre></td></tr></table></div></figure>
+
+
+<p>После этого начинают работать боковый клавиши.</p>
+
+<p>Чтобы произошло полное обновление экрана, можно вызвать какой-нибудь диалог.
+Например, нажать два раза на &#8216;BACK&#8217; клавишу.</p>
 </div>
 
 
