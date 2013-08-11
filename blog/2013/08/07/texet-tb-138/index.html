@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Приобрел все таки эл. книгу с большим 8&#8221; экраном - Texet tb-138. Выяснилось, что внутри Android 2.3.1.
+  <meta name="description" content="Приобрел все таки эл. книгу с большим 8&#8221; экраном - Texet TB-138. Выяснилось, что внутри Android 2.3.1.
 Да еще и процессор быстрый: Rockchip &hellip;">
   
 
@@ -104,13 +104,13 @@
   </header>
 
 
-<div class="entry-content"><p>Приобрел все таки эл. книгу с большим 8&#8221; экраном - Texet tb-138.</p>
+<div class="entry-content"><p>Приобрел все таки эл. книгу с большим 8&#8221; экраном - Texet TB-138.</p>
 
 <p>Выяснилось, что внутри Android 2.3.1.
 Да еще и процессор быстрый: Rockchip rk2918 (Cortex A8, 1Ghz)</p>
 
 <p>Не знаю по каким причинам производитель не пишет, что внутри Android и можно ставить свои приложения,
-но я бы сразу купил и не нужно было бы изучать firmware update с сайта призводителя (http://www.texet.ru/save.php?file=/files/teXet_TB-138_firmware_v1.1_1374574978.rar)</p>
+но я бы сразу купил и не нужно было бы изучать <a href="http://www.texet.ru/save.php?file=/files/teXet_TB-138_firmware_v1.1_1374574978.rar">firmware update с сайта призводителя</a></p>
 
 <p>Вот параметры процессора, разделы flash и состояние памяти:</p>
 
@@ -175,7 +175,7 @@
 
 <p>Режим отладки включается легко: нужно нажать на кнопку MENU в Настройки/Информация.
 И после этого можно подключаться по adb.
-Вот как почему это работает (код в com.caration.setting.Setting из EinkSettings.apk):</p>
+Вот как это работает (код в com.caration.setting.Setting из EinkSettings.apk):</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -211,23 +211,24 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>SUBSYSTEM=="usb", ATTR{idVendor}=="0bb4", MODE="0666"</span></code></pre></td></tr></table></div></figure>
 
 
-<h1>PDF и djvu</h1>
+<p>Штатные программы имеют некоторые недостатки:</p>
 
 <ul>
-<li>djvu: штатный viewer растягивает страницу непропорционально</li>
+<li>djvu: растягивает страницу непропорционально</li>
 <li>pdf: если не масштабировать, то читать можно (масштаб при переходе со страницы на страницу не запоминает)</li>
 </ul>
 
 
-<p>В общем, поставил Orion Viewer - https://code.google.com/p/orion-viewer/
-Он пошустрее работает и с масштабированием очень удобно.
-Новая версия уже поддерживает Texet tb-138!
-Commit: https://github.com/max-kammerer/orion-viewer/commit/e010cb7fc19d5754b2606be8b9553a5ae439366b</p>
+<p>Список программ, которые работают на Texet TB-138:</p>
 
-<h1>fb2, epub и другие</h1>
+<h2><a href="https://code.google.com/p/orion-viewer/">OrionReader</a></h2>
 
-<p>Очень удобно читать c помощью AlReader.
-Вот патч для него:</p>
+<p>Очень быстро работает, можно легко обрезать края, чтобы размер текста становился больше.
+Новая версия 0.42.3 <a href="https://github.com/max-kammerer/orion-viewer/commit/e010cb7fc19d5754b2606be8b9553a5ae439366b">уже поддерживает Texet tb-138</a>!</p>
+
+<h2><a href="http://alreader.com">AlReader</a></h2>
+
+<p>Патч для включения боковых клавиш:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -279,10 +280,27 @@ Commit: https://github.com/max-kammerer/orion-viewer/commit/e010cb7fc19d5754b260
 </span><span class='line'>     invoke-virtual {p2}, Landroid/view/KeyEvent;-&gt;getEventTime()J </span></code></pre></td></tr></table></div></figure>
 
 
-<p>После этого начинают работать боковый клавиши.</p>
-
-<p>Чтобы произошло полное обновление экрана, можно вызвать какой-нибудь диалог.
+<p>Для полного обновления экрана, нужно вызвать какой-нибудь диалог.
 Например, нажать два раза на &#8216;BACK&#8217; клавишу.</p>
+
+<h2><a href="http://coolreader.org">CoolReader</a></h2>
+
+<p>Боковые клавиши: в /mnt/sdcard/.cr3/cr3.ini добавить</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>app.key.action.press.144=PAGE_DOWN 
+</span><span class='line'>app.key.action.press.143=PAGE_UP </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Включить WHITE-тему, чтобы не было подложки:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>app.ui.theme=WHITE </span></code></pre></td></tr></table></div></figure>
+
+
+<p>К сожалению, CoolReader сам рисует меню и главный экран с помощью TextView и ImageView.
+Поэтому клавиши в этих элементах не работают.</p>
 </div>
 
 

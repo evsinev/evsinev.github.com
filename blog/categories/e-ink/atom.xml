@@ -4,7 +4,7 @@
   <title><![CDATA[Category: e-ink | My Octopress Blog]]></title>
   <link href="http://evsinev.github.com/blog/categories/e-ink/atom.xml" rel="self"/>
   <link href="http://evsinev.github.com/"/>
-  <updated>2013-08-11T00:37:46+04:00</updated>
+  <updated>2013-08-11T19:15:09+04:00</updated>
   <id>http://evsinev.github.com/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,13 +18,13 @@
     <link href="http://evsinev.github.com/blog/2013/08/07/texet-tb-138/"/>
     <updated>2013-08-07T00:55:00+04:00</updated>
     <id>http://evsinev.github.com/blog/2013/08/07/texet-tb-138</id>
-    <content type="html"><![CDATA[<p>Приобрел все таки эл. книгу с большим 8" экраном - Texet tb-138.</p>
+    <content type="html"><![CDATA[<p>Приобрел все таки эл. книгу с большим 8" экраном - Texet TB-138.</p>
 
 <p>Выяснилось, что внутри Android 2.3.1.
 Да еще и процессор быстрый: Rockchip rk2918 (Cortex A8, 1Ghz)</p>
 
 <p>Не знаю по каким причинам производитель не пишет, что внутри Android и можно ставить свои приложения,
-но я бы сразу купил и не нужно было бы изучать firmware update с сайта призводителя (http://www.texet.ru/save.php?file=/files/teXet_TB-138_firmware_v1.1_1374574978.rar)</p>
+но я бы сразу купил и не нужно было бы изучать <a href="http://www.texet.ru/save.php?file=/files/teXet_TB-138_firmware_v1.1_1374574978.rar">firmware update с сайта призводителя</a></p>
 
 <p>Вот параметры процессора, разделы flash и состояние памяти:
 ```
@@ -61,7 +61,7 @@ Cached:            53212 kB
 
 <p>Режим отладки включается легко: нужно нажать на кнопку MENU в Настройки/Информация.
 И после этого можно подключаться по adb.
-Вот как почему это работает (код в com.caration.setting.Setting из EinkSettings.apk):
+Вот как это работает (код в com.caration.setting.Setting из EinkSettings.apk):
 ```</p>
 
 <pre><code>    d.setOnKeyListener(new android.content.DialogInterface.OnKeyListener() {
@@ -86,23 +86,24 @@ Cached:            53212 kB
 SUBSYSTEM=="usb", ATTR{idVendor}=="0bb4", MODE="0666"
 </code></p>
 
-<h1>PDF и djvu</h1>
+<p>Штатные программы имеют некоторые недостатки:</p>
 
 <ul>
-<li>djvu: штатный viewer растягивает страницу непропорционально</li>
+<li>djvu: растягивает страницу непропорционально</li>
 <li>pdf: если не масштабировать, то читать можно (масштаб при переходе со страницы на страницу не запоминает)</li>
 </ul>
 
 
-<p>В общем, поставил Orion Viewer - https://code.google.com/p/orion-viewer/
-Он пошустрее работает и с масштабированием очень удобно.
-Новая версия уже поддерживает Texet tb-138!
-Commit: https://github.com/max-kammerer/orion-viewer/commit/e010cb7fc19d5754b2606be8b9553a5ae439366b</p>
+<p>Список программ, которые работают на Texet TB-138:</p>
 
-<h1>fb2, epub и другие</h1>
+<h2><a href="https://code.google.com/p/orion-viewer/">OrionReader</a></h2>
 
-<p>Очень удобно читать c помощью AlReader.
-Вот патч для него:
+<p>Очень быстро работает, можно легко обрезать края, чтобы размер текста становился больше.
+Новая версия 0.42.3 <a href="https://github.com/max-kammerer/orion-viewer/commit/e010cb7fc19d5754b2606be8b9553a5ae439366b">уже поддерживает Texet tb-138</a>!</p>
+
+<h2><a href="http://alreader.com">AlReader</a></h2>
+
+<p>Патч для включения боковых клавиш:
 ```
 AlReader3Activity.onKeyDown(int keyCode, KeyEvent event) добавляется</p>
 
@@ -138,10 +139,24 @@ AlReader3Activity.onKeyDown(int keyCode, KeyEvent event) добавляется<
 </ul>
 
 
-<p>После этого начинают работать боковый клавиши.</p>
-
-<p>Чтобы произошло полное обновление экрана, можно вызвать какой-нибудь диалог.
+<p>Для полного обновления экрана, нужно вызвать какой-нибудь диалог.
 Например, нажать два раза на 'BACK' клавишу.</p>
+
+<h2><a href="http://coolreader.org">CoolReader</a></h2>
+
+<p>Боковые клавиши: в /mnt/sdcard/.cr3/cr3.ini добавить
+<code>
+app.key.action.press.144=PAGE_DOWN
+app.key.action.press.143=PAGE_UP
+</code></p>
+
+<p>Включить WHITE-тему, чтобы не было подложки:
+<code>
+app.ui.theme=WHITE
+</code></p>
+
+<p>К сожалению, CoolReader сам рисует меню и главный экран с помощью TextView и ImageView.
+Поэтому клавиши в этих элементах не работают.</p>
 ]]></content>
   </entry>
   
