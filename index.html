@@ -164,6 +164,119 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/08/12/texet-tb-138/">Texet TB-138</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-12T12:43:00+04:00" pubdate data-updated="true">Aug 12<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/08/12/texet-tb-138/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Приобрел все таки эл. книгу с большим 8&#8221; экраном - Texet TB-138.</p>
+
+<p>Выяснилось, что внутри Android 2.3.1.
+Да еще и процессор быстрый: Rockchip rk2918 (Cortex A8, 1Ghz)</p>
+
+<p>Не знаю по каким причинам производитель не пишет, что внутри Android и можно ставить свои приложения,
+но я бы сразу купил и не нужно было бы изучать <a href="http://www.texet.ru/save.php?file=/files/teXet_TB-138_firmware_v1.1_1374574978.rar">firmware update с сайта призводителя</a></p>
+
+<p>Вот параметры процессора, разделы flash и состояние памяти:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat /proc/cpuinfo 
+</span><span class='line'>Processor   : ARMv7 Processor rev 2 (v7l) 
+</span><span class='line'>BogoMIPS   : 101.94 
+</span><span class='line'>Features   : swp half thumb fastmult vfp edsp thumbee neon vfpv3 
+</span><span class='line'>...
+</span><span class='line'>/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq 
+</span><span class='line'>102000 
+</span><span class='line'>/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq 
+</span><span class='line'>102000 
+</span><span class='line'>/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq 
+</span><span class='line'>1008000 
+</span><span class='line'>...
+</span><span class='line'>df 
+</span><span class='line'>Filesystem             Size   Used   Free   Blksize 
+</span><span class='line'>/dev                    87M    32K    87M   4096 
+</span><span class='line'>/mnt/asec               87M     0K    87M   4096 
+</span><span class='line'>/mnt/obb                87M     0K    87M   4096 
+</span><span class='line'>/system                178M   178M    31K   1024 
+</span><span class='line'>/data                  503M    51M   451M   4096 
+</span><span class='line'>/cache                 112M     5M   106M   1024 
+</span><span class='line'>/mnt/storage             2G    18M     2G   8192 
+</span><span class='line'>
+</span><span class='line'>cat /proc/meminfo 
+</span><span class='line'>MemTotal:         178836 kB 
+</span><span class='line'>MemFree:           11908 kB 
+</span><span class='line'>Buffers:            3288 kB 
+</span><span class='line'>Cached:            53212 kB
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Режим отладки включается легко: нужно нажать на кнопку MENU в Настройки/Информация.
+И после этого можно подключаться по adb.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/08/12/texet-tb-138/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/08/07/texet-tb-138/">Texet TB-138</a></h1>
     
     
@@ -259,198 +372,14 @@
 
 
 <p>Режим отладки включается легко: нужно нажать на кнопку MENU в Настройки/Информация.
-И после этого можно подключаться по adb.
-Вот как это работает (код в com.caration.setting.Setting из EinkSettings.apk):</p>
+И после этого можно подключаться по adb.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>    d.setOnKeyListener(new android.content.DialogInterface.OnKeyListener() {
-</span><span class='line'>        public boolean onKey(DialogInterface dialoginterface, int i, KeyEvent keyevent) {
-</span><span class='line'>            if(i == 82 && keyevent.getAction() == 0)
-</span><span class='line'>                try {
-</span><span class='line'>                    if(android.provider.Settings.Secure.getInt(getContentResolver(), "adb_enabled") == 0)
-</span><span class='line'>                        android.provider.Settings.Secure.putInt(getContentResolver(), "adb_enabled", 1);
-</span><span class='line'>                    else
-</span><span class='line'>                        android.provider.Settings.Secure.putInt(getContentResolver(), "adb_enabled", 0);
-</span><span class='line'>                } catch(android.provider.Settings.SettingNotFoundException settingnotfoundexception) {
-</span><span class='line'>                    settingnotfoundexception.printStackTrace();
-</span><span class='line'>                }
-</span><span class='line'>            return false;
-</span><span class='line'>        }</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Для тех у кого linux, ниже правило для udev:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>SUBSYSTEM=="usb", ATTR{idVendor}=="0bb4", MODE="0666"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Штатные программы имеют некоторые недостатки:</p>
-
-<ul>
-<li>djvu: растягивает страницу непропорционально</li>
-<li>pdf: если не масштабировать, то читать можно (масштаб при переходе со страницы на страницу не запоминает)</li>
-<li>fb2, epub - отсутсвие переносов</li>
-<li>html - только малую часть текста показывает (например, сохраняем статью с habr.ru и читаем только пару обзацев, остальное пропадает)</li>
-</ul>
-
-
-<p>Все это решается установкой дополнительных программ.
-Т.к. не все программы расчитаны на eink-дисплеи, то нужно выбирать их или адаптировать.
-К тому же, у Texet TB-138 нет сенсорного ввода.</p>
-
-<p>Чтобы программа полноценно работала на этой книжке нужно:
- * поддержка боковых клавиш листания (вперед - KEYCODE_NUMPAD_0, назад - KEYCODE_NUM_LOCK)
- * полное обновление экрана, для очистки от мусора с предыдущих страниц - View.requestEpdMode(1) перед View.invalidate()
- * навигация по меню с помощью клавиш</p>
-
-<p>Привожу список программ, которые работают на Texet TB-138:</p>
-
-<h2><a href="https://code.google.com/p/orion-viewer/">OrionReader</a></h2>
-
-<ul>
-<li>pdf, djvu</li>
-<li>очень быстро работает</li>
-<li>можно легко обрезать края, чтобы размер текста становился больше</li>
-</ul>
-
-
-<p>Новая версия 0.42.3 <a href="https://github.com/max-kammerer/orion-viewer/commit/e010cb7fc19d5754b2606be8b9553a5ae439366b">уже поддерживает Texet tb-138</a>!</p>
-
-<h2><a href="http://alreader.com">AlReader</a></h2>
-
-<ul>
-<li>fb2, epub и др.</li>
-</ul>
-
-
-<p>Патч для включения боковых клавиш:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>AlReader3Activity.onKeyDown(int keyCode, KeyEvent event) добавляется 
-</span><span class='line'>        if(keyCode==20) keyCode = 144; // клавиша 'влево' для KEYCODE_DPAD_DOWN 
-</span><span class='line'>        if(keyCode==19) keyCode = 143; // клавиша 'вправо' для KEYCODE_DPAD_UP 
-</span><span class='line'>diff -Nur AlReader3Activity-orig/smali/com/neverland/alr/AlReader3Activity.smali AlReader3Activity/smali/com/neverland/alr/AlReader3Activity.smali 
-</span><span class='line'>--- AlReader3Activity-orig/smali/com/neverland/alr/AlReader3Activity.smali    2013-08-08 15:24:19.000000000 +0400 
-</span><span class='line'>+++ AlReader3Activity/smali/com/neverland/alr/AlReader3Activity.smali   2013-08-09 02:10:07.503478159 +0400 
-</span><span class='line'>@@ -8594,6 +8594,18 @@ 
-</span><span class='line'>     .parameter "event" 
-</span><span class='line'>  
-</span><span class='line'>     .prologue 
-</span><span class='line'>+ 
-</span><span class='line'>+    const/16 v4, 0x90 
-</span><span class='line'>+    if-ne p1, v4, :cond_9991 
-</span><span class='line'>+    const/16 p1, 0x14 
-</span><span class='line'>+    
-</span><span class='line'>+    :cond_9991 
-</span><span class='line'>+    const/16 v4, 0x8f 
-</span><span class='line'>+    if-ne p1, v4, :cond_9992 
-</span><span class='line'>+    const/16 p1, 0x13 
-</span><span class='line'>+ 
-</span><span class='line'>+    :cond_9992 
-</span><span class='line'>+ 
-</span><span class='line'>     .line 2990 
-</span><span class='line'>     invoke-virtual {p2}, Landroid/view/KeyEvent;-&gt;getEventTime()J </span></code></pre></td></tr></table></div></figure>
-
-
-<p>Для полного обновления экрана, нужно вызвать какой-нибудь диалог.
-Например, нажать два раза на &#8216;BACK&#8217; клавишу.</p>
-
-<h2><a href="http://coolreader.org">CoolReader</a></h2>
-
-<ul>
-<li>fb2, epub, html и др.</li>
-</ul>
-
-
-<p>Боковые клавиши: в /mnt/sdcard/.cr3/cr3.ini добавить</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>app.key.action.press.144=PAGE_DOWN 
-</span><span class='line'>app.key.action.press.143=PAGE_UP </span></code></pre></td></tr></table></div></figure>
-
-
-<p>Включить WHITE-тему, чтобы не было подложки:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>app.ui.theme=WHITE </span></code></pre></td></tr></table></div></figure>
-
-
-<p>К сожалению, CoolReader сам рисует меню и главный экран с помощью TextView и ImageView.
-Поэтому клавиши в этих элементах не работают.</p>
-
-<h2><a href="http://fbreader.org">FBReader</a></h2>
-
-<ul>
-<li>fb2, epub, html</li>
-</ul>
-
-
-<h3>Обновление экрана</h3>
-
-<p><a href="https://gist.github.com/evsinev/6205721">Патч для полного обновления экрана</a></p>
-
-<h3>Клавиши</h3>
-
-<p>Согласно <a href="http://fbreader.org/content/documentation/key-bindings-settings">документации</a>
-в файле /sdcard/Books/keymap.xml прописываем</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-</span><span class='line'>&lt;keymap&gt;
-</span><span class='line'>  &lt;binding key="144" action="nextPage"/&gt;     &lt;!-- KEYCODE_NUMPAD_0 --&gt;
-</span><span class='line'>  &lt;binding key="143" action="previousPage"/&gt; &lt;!-- KEYCODE_NUM_LOCK --&gt;
-</span><span class='line'>  &lt;binding key="151" action="epdRefresh"/&gt;   &lt;!-- KEYCODE_NUMPAD_7 --&gt;
-</span><span class='line'>&lt;/keymap&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Кроме боковых будет работать и клавиша &#8220;Виртуальная клавиатура&#8221;, при нажатии на которую выполнится полное обновление экрана.</p>
-
-<h3>Дополнительные настройки</h3>
-
-<p>Фон = Сплошной текст, Перелистывание страниц/Анимация = Выключить анимацию</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/08/07/texet-tb-138/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -750,6 +679,10 @@ https://github.com/evsinev/stm32-servo-arm</p>
       </li>
     
       <li class="post">
+        <a href="/blog/2013/08/12/texet-tb-138/">Texet TB-138</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/07/texet-tb-138/">Texet TB-138</a>
       </li>
     
@@ -759,10 +692,6 @@ https://github.com/evsinev/stm32-servo-arm</p>
     
       <li class="post">
         <a href="/blog/2013/06/09/epd-controller/">EPD controller</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/30/mysql-profiler/">mysql-profiler</a>
       </li>
     
   </ul>
