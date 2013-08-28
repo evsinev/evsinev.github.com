@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: android | My Octopress Blog]]></title>
-  <link href="http://evsinev.github.com/blog/categories/android/atom.xml" rel="self"/>
-  <link href="http://evsinev.github.com/"/>
-  <updated>2013-08-29T00:58:51+04:00</updated>
-  <id>http://evsinev.github.com/</id>
+  <link href="http://evsinev.github.io/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://evsinev.github.io/"/>
+  <updated>2013-08-29T01:02:20+04:00</updated>
+  <id>http://evsinev.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[If windowSoftInputMode does not work]]></title>
-    <link href="http://evsinev.github.com/blog/2013/08/29/windowsoftinputmode-does-not-work/"/>
+    <link href="http://evsinev.github.io/blog/2013/08/29/windowsoftinputmode-does-not-work/"/>
     <updated>2013-08-29T00:39:00+04:00</updated>
-    <id>http://evsinev.github.com/blog/2013/08/29/windowsoftinputmode-does-not-work</id>
+    <id>http://evsinev.github.io/blog/2013/08/29/windowsoftinputmode-does-not-work</id>
     <content type="html"><![CDATA[<p>Activity has an element <code>windowSoftInputMode</code> to interact with a on-screen soft keyboard.</p>
 
 <p>There are many suggestions <a href="http://stackoverflow.com/questions/16411056/how-to-adjust-layout-when-soft-keyboard-appears">How to adjust layout when soft keyboard appears</a>, but sometimes it does not work.</p>

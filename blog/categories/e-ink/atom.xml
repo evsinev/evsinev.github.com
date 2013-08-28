@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: e-ink | My Octopress Blog]]></title>
-  <link href="http://evsinev.github.com/blog/categories/e-ink/atom.xml" rel="self"/>
-  <link href="http://evsinev.github.com/"/>
-  <updated>2013-08-29T00:58:51+04:00</updated>
-  <id>http://evsinev.github.com/</id>
+  <link href="http://evsinev.github.io/blog/categories/e-ink/atom.xml" rel="self"/>
+  <link href="http://evsinev.github.io/"/>
+  <updated>2013-08-29T01:02:20+04:00</updated>
+  <id>http://evsinev.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Texet TB-138]]></title>
-    <link href="http://evsinev.github.com/blog/2013/08/07/texet-tb-138/"/>
+    <link href="http://evsinev.github.io/blog/2013/08/07/texet-tb-138/"/>
     <updated>2013-08-07T12:43:00+04:00</updated>
-    <id>http://evsinev.github.com/blog/2013/08/07/texet-tb-138</id>
+    <id>http://evsinev.github.io/blog/2013/08/07/texet-tb-138</id>
     <content type="html"><![CDATA[<p>Приобрел все таки эл. книгу с большим 8" экраном - Texet TB-138.</p>
 
 <p>Выяснилось, что внутри Android 2.3.1.

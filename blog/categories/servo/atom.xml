@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: servo | My Octopress Blog]]></title>
-  <link href="http://evsinev.github.com/blog/categories/servo/atom.xml" rel="self"/>
-  <link href="http://evsinev.github.com/"/>
-  <updated>2013-08-29T00:58:51+04:00</updated>
-  <id>http://evsinev.github.com/</id>
+  <link href="http://evsinev.github.io/blog/categories/servo/atom.xml" rel="self"/>
+  <link href="http://evsinev.github.io/"/>
+  <updated>2013-08-29T01:02:20+04:00</updated>
+  <id>http://evsinev.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[stm32-servo]]></title>
-    <link href="http://evsinev.github.com/blog/2013/03/16/stm32-servo/"/>
+    <link href="http://evsinev.github.io/blog/2013/03/16/stm32-servo/"/>
     <updated>2013-03-16T17:44:00+04:00</updated>
-    <id>http://evsinev.github.com/blog/2013/03/16/stm32-servo</id>
+    <id>http://evsinev.github.io/blog/2013/03/16/stm32-servo</id>
     <content type="html"><![CDATA[<p>Начинаем делать</p>
 
 <p>http://thingiverse-production.s3.amazonaws.com/renders/d0/f3/fa/6c/79/_MG_5060_preview_featured.jpg

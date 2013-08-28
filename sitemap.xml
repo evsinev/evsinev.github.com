@@ -1,41 +1,41 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://evsinev.github.com/blog/2013/03/16/stm32-servo/</loc>
+        <loc>http://evsinev.github.io/blog/2013/03/16/stm32-servo/</loc>
         <lastmod>2013-03-17T15:19:11+04:00</lastmod>
     </url>
     <url>
-        <loc>http://evsinev.github.com/blog/2013/03/30/mysql-profiler/</loc>
+        <loc>http://evsinev.github.io/blog/2013/03/30/mysql-profiler/</loc>
         <lastmod>2013-03-30T23:41:57+04:00</lastmod>
     </url>
     <url>
-        <loc>http://evsinev.github.com/blog/2013/06/09/epd-controller/</loc>
+        <loc>http://evsinev.github.io/blog/2013/06/09/epd-controller/</loc>
         <lastmod>2013-06-09T22:41:35+04:00</lastmod>
     </url>
     <url>
         <loc>
-            http://evsinev.github.com/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea/
+            http://evsinev.github.io/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea/
         </loc>
         <lastmod>2013-06-27T21:07:04+04:00</lastmod>
     </url>
     <url>
-        <loc>http://evsinev.github.com/blog/2013/08/07/texet-tb-138/</loc>
+        <loc>http://evsinev.github.io/blog/2013/08/07/texet-tb-138/</loc>
         <lastmod>2013-08-29T00:57:13+04:00</lastmod>
     </url>
     <url>
-        <loc>http://evsinev.github.com/blog/2013/08/29/windowsoftinputmode-does-not-work/</loc>
+        <loc>http://evsinev.github.io/blog/2013/08/29/windowsoftinputmode-does-not-work/</loc>
         <lastmod>2013-08-29T00:53:14+04:00</lastmod>
     </url>
     <url>
-        <loc>http://evsinev.github.com/blog/archives/</loc>
+        <loc>http://evsinev.github.io/blog/archives/</loc>
         <lastmod>2013-08-29T00:57:13+04:00</lastmod>
     </url>
     <url>
-        <loc>http://evsinev.github.com/robots.txt</loc>
+        <loc>http://evsinev.github.io/robots.txt</loc>
         <lastmod>2013-03-16T16:46:22+04:00</lastmod>
     </url>
     <url>
-        <loc>http://evsinev.github.com/</loc>
+        <loc>http://evsinev.github.io/</loc>
         <lastmod>2013-08-29T00:57:13+04:00</lastmod>
     </url>
 </urlset>

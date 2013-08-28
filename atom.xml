@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[My Octopress Blog]]></title>
-  <link href="http://evsinev.github.com/atom.xml" rel="self"/>
-  <link href="http://evsinev.github.com/"/>
-  <updated>2013-08-29T00:58:51+04:00</updated>
-  <id>http://evsinev.github.com/</id>
+  <link href="http://evsinev.github.io/atom.xml" rel="self"/>
+  <link href="http://evsinev.github.io/"/>
+  <updated>2013-08-29T01:02:20+04:00</updated>
+  <id>http://evsinev.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[If windowSoftInputMode does not work]]></title>
-    <link href="http://evsinev.github.com/blog/2013/08/29/windowsoftinputmode-does-not-work/"/>
+    <link href="http://evsinev.github.io/blog/2013/08/29/windowsoftinputmode-does-not-work/"/>
     <updated>2013-08-29T00:39:00+04:00</updated>
-    <id>http://evsinev.github.com/blog/2013/08/29/windowsoftinputmode-does-not-work</id>
+    <id>http://evsinev.github.io/blog/2013/08/29/windowsoftinputmode-does-not-work</id>
     <content type="html"><![CDATA[<p>Activity has an element <code>windowSoftInputMode</code> to interact with a on-screen soft keyboard.</p>
 
 <p>There are many suggestions <a href="http://stackoverflow.com/questions/16411056/how-to-adjust-layout-when-soft-keyboard-appears">How to adjust layout when soft keyboard appears</a>, but sometimes it does not work.</p>
@@ -66,9 +66,9 @@
   
   <entry>
     <title type="html"><![CDATA[Texet TB-138]]></title>
-    <link href="http://evsinev.github.com/blog/2013/08/07/texet-tb-138/"/>
+    <link href="http://evsinev.github.io/blog/2013/08/07/texet-tb-138/"/>
     <updated>2013-08-07T12:43:00+04:00</updated>
-    <id>http://evsinev.github.com/blog/2013/08/07/texet-tb-138</id>
+    <id>http://evsinev.github.io/blog/2013/08/07/texet-tb-138</id>
     <content type="html"><![CDATA[<p>Приобрел все таки эл. книгу с большим 8&#8221; экраном - Texet TB-138.</p>
 
 <p>Выяснилось, что внутри Android 2.3.1.
@@ -338,9 +338,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to enable android incremental build in Idea]]></title>
-    <link href="http://evsinev.github.com/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea/"/>
+    <link href="http://evsinev.github.io/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea/"/>
     <updated>2013-06-27T20:50:00+04:00</updated>
-    <id>http://evsinev.github.com/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea</id>
+    <id>http://evsinev.github.io/blog/2013/06/27/how-to-enable-android-incremental-build-in-idea</id>
     <content type="html"><![CDATA[<h2>Modify dx.jar to enable incremental build by default</h2>
 
 <ul>
@@ -382,9 +382,9 @@ in the <code>idea-$VERSION/plugins/android/lib/jps/android-jps-plugin.jar</code>
   
   <entry>
     <title type="html"><![CDATA[EPD controller]]></title>
-    <link href="http://evsinev.github.com/blog/2013/06/09/epd-controller/"/>
+    <link href="http://evsinev.github.io/blog/2013/06/09/epd-controller/"/>
     <updated>2013-06-09T20:40:00+04:00</updated>
-    <id>http://evsinev.github.com/blog/2013/06/09/epd-controller</id>
+    <id>http://evsinev.github.io/blog/2013/06/09/epd-controller</id>
     <content type="html"><![CDATA[<p>Как сделать книгу на электронных чернилах своими руками.</p>
 
 <ul>
@@ -406,9 +406,9 @@ http://podpiram.si/products-hardware/epaper-displays/97-epd/</p>
   
   <entry>
     <title type="html"><![CDATA[mysql-profiler]]></title>
-    <link href="http://evsinev.github.com/blog/2013/03/30/mysql-profiler/"/>
+    <link href="http://evsinev.github.io/blog/2013/03/30/mysql-profiler/"/>
     <updated>2013-03-30T22:38:00+04:00</updated>
-    <id>http://evsinev.github.com/blog/2013/03/30/mysql-profiler</id>
+    <id>http://evsinev.github.io/blog/2013/03/30/mysql-profiler</id>
     <content type="html"><![CDATA[<h2>CentOS 5 - oprofiler</h2>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -592,9 +592,9 @@ tryLock -&gt; lock()
   
   <entry>
     <title type="html"><![CDATA[stm32-servo]]></title>
-    <link href="http://evsinev.github.com/blog/2013/03/16/stm32-servo/"/>
+    <link href="http://evsinev.github.io/blog/2013/03/16/stm32-servo/"/>
     <updated>2013-03-16T17:44:00+04:00</updated>
-    <id>http://evsinev.github.com/blog/2013/03/16/stm32-servo</id>
+    <id>http://evsinev.github.io/blog/2013/03/16/stm32-servo</id>
     <content type="html"><![CDATA[<p>Начинаем делать</p>
 
 <p>http://thingiverse-production.s3.amazonaws.com/renders/d0/f3/fa/6c/79/_MG_5060_preview_featured.jpg
