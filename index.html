@@ -10,8 +10,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Приобрел все таки эл. книгу с большим 8&#8221; экраном - Texet TB-138. Выяснилось, что внутри Android 2.3.1.
-Да еще и процессор быстрый: Rockchip &hellip;">
+  <meta name="description" content="Activity has an element windowSoftInputMode to interact with a on-screen soft keyboard. There are many suggestions How to adjust layout when soft &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +78,86 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/29/windowsoftinputmode-does-not-work/">If windowSoftInputMode Does Not Work</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-29T00:39:00+04:00" pubdate data-updated="true">Aug 29<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/08/29/windowsoftinputmode-does-not-work/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Activity has an element <code>windowSoftInputMode</code> to interact with a on-screen soft keyboard.</p>
+
+<p>There are many suggestions <a href="http://stackoverflow.com/questions/16411056/how-to-adjust-layout-when-soft-keyboard-appears">How to adjust layout when soft keyboard appears</a>, but sometimes it does not work.</p>
+
+<p>Why?</p>
+
+<p>Because we set it at <code>AndroidManifest.xml</code>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;activity android:windowSoftInputMode="stateVisible|adjustResize" . . . &gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But if we use a theme in our application this property is overrided:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;style name="Theme"&gt;
+</span><span class='line'>...
+</span><span class='line'>        &lt;item name="android:windowSoftInputMode"&gt;stateUnspecified|adjustUnspecified&lt;/item&gt;
+</span><span class='line'>...
+</span><span class='line'>&lt;/style&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hence we need to override it in our theme:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;style name="NameActivity" parent="@android:style/Theme.Holo.NoActionBar"&gt;
+</span><span class='line'>     &lt;item name="android:windowSoftInputMode"&gt;adjustResize&lt;/item&gt;
+</span><span class='line'>&lt;/style&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After we can use it at <code>AndroidManifest.xml</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;activity android:theme="@style/NameActivity" android:name=".NameActivity"/&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -964,6 +1043,10 @@ https://github.com/evsinev/stm32-servo-arm</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/08/29/windowsoftinputmode-does-not-work/">If windowSoftInputMode does not work</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/08/12/texet-tb-138/">Texet TB-138</a>
       </li>
     
@@ -977,10 +1060,6 @@ https://github.com/evsinev/stm32-servo-arm</p>
     
       <li class="post">
         <a href="/blog/2013/06/09/epd-controller/">EPD controller</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/03/30/mysql-profiler/">mysql-profiler</a>
       </li>
     
   </ul>

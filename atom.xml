@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://evsinev.github.com/atom.xml" rel="self"/>
   <link href="http://evsinev.github.com/"/>
-  <updated>2013-08-14T13:45:53+04:00</updated>
+  <updated>2013-08-29T00:53:40+04:00</updated>
   <id>http://evsinev.github.com/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[If windowSoftInputMode does not work]]></title>
+    <link href="http://evsinev.github.com/blog/2013/08/29/windowsoftinputmode-does-not-work/"/>
+    <updated>2013-08-29T00:39:00+04:00</updated>
+    <id>http://evsinev.github.com/blog/2013/08/29/windowsoftinputmode-does-not-work</id>
+    <content type="html"><![CDATA[<p>Activity has an element <code>windowSoftInputMode</code> to interact with a on-screen soft keyboard.</p>
+
+<p>There are many suggestions <a href="http://stackoverflow.com/questions/16411056/how-to-adjust-layout-when-soft-keyboard-appears">How to adjust layout when soft keyboard appears</a>, but sometimes it does not work.</p>
+
+<p>Why?</p>
+
+<p>Because we set it at <code>AndroidManifest.xml</code>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;activity android:windowSoftInputMode="stateVisible|adjustResize" . . . &gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But if we use a theme in our application this property is overrided:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;style name="Theme"&gt;
+</span><span class='line'>...
+</span><span class='line'>        &lt;item name="android:windowSoftInputMode"&gt;stateUnspecified|adjustUnspecified&lt;/item&gt;
+</span><span class='line'>...
+</span><span class='line'>&lt;/style&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hence we need to override it in our theme:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;style name="NameActivity" parent="@android:style/Theme.Holo.NoActionBar"&gt;
+</span><span class='line'>     &lt;item name="android:windowSoftInputMode"&gt;adjustResize&lt;/item&gt;
+</span><span class='line'>&lt;/style&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After we can use it at <code>AndroidManifest.xml</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;activity android:theme="@style/NameActivity" android:name=".NameActivity"/&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Texet TB-138]]></title>
